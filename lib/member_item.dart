@@ -1,49 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:todo/homePage.dart';
 
 class MembersItem extends StatelessWidget {
+  final MembersName name;
   final String title;
   final String imagePath;
   final bool selected;
+  final Function() onTapContainer;
 
   const MembersItem({
     super.key,
     required this.imagePath,
     required this.selected,
     required this.title,
+    required this.name,
+    required this.onTapContainer,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-
-        Container(
-          width: 64,
-          height: 64,
-          margin: const EdgeInsets.only(right: 11, left: 11),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(33),
-            gradient:selected?
-            const LinearGradient(begin: Alignment.topLeft, colors: [
-              Color(0xff376AED),
-              Color(0xff49B0E2),
-              Color(0xff9CECFB),
-            ]) : LinearGradient(begin: Alignment.topLeft, colors: [
-              Colors.grey,
-              Colors.grey.shade400,
-              Colors.grey.shade200,
-            ]),
-
-          ),
+        InkWell(
+          onTap: onTapContainer,
           child: Container(
-            margin: const EdgeInsets.all(3),
+            width: 64,
+            height: 64,
+            margin: const EdgeInsets.only(right: 11, left: 11),
             decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(33),
+              gradient: selected
+                  ? const LinearGradient(begin: Alignment.topLeft, colors: [
+                      Color(0xff376AED),
+                      Color(0xff49B0E2),
+                      Color(0xff9CECFB),
+                    ])
+                  : LinearGradient(begin: Alignment.topLeft, colors: [
+                      Colors.grey,
+                      Colors.grey.shade400,
+                      Colors.grey.shade200,
+                    ]),
             ),
-            padding: const EdgeInsets.all(5),
-            child: Image.asset(
-              imagePath,
+            child: Container(
+              margin: const EdgeInsets.all(3),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              padding: const EdgeInsets.all(5),
+              child: Image.asset(
+                imagePath,
+              ),
             ),
           ),
         ),
@@ -57,43 +64,3 @@ class MembersItem extends StatelessWidget {
     );
   }
 }
-
-class SelectedItem extends StatelessWidget {
-  const SelectedItem({
-    super.key,
-    required this.imagePath,
-  });
-
-  final String imagePath;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 64,
-      height: 64,
-      margin: const EdgeInsets.only(right: 11, left: 11),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(33),
-        gradient:
-        const LinearGradient(begin: Alignment.topLeft, colors: [
-          Color(0xff376AED),
-          Color(0xff49B0E2),
-          Color(0xff9CECFB),
-        ]),
-      ),
-      child: Container(
-        margin: const EdgeInsets.all(3),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(30),
-        ),
-        padding: const EdgeInsets.all(5),
-        child: Image.asset(
-          imagePath,
-        ),
-      ),
-    );
-  }
-}
-
-
