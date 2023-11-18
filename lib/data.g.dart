@@ -8,6 +8,7 @@ part of 'data.dart';
 
 class TaskAdapter extends TypeAdapter<Task> {
   @override
+
   final int typeId = 0;
 
   @override

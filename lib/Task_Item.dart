@@ -50,6 +50,7 @@ class _TaskItemState extends State<TaskItem> {
                 const SizedBox(width: 8,),
                 Text(widget.task.name),],),
 
+
               IconButton(
                   onPressed: () {
                     widget.task.delete();
