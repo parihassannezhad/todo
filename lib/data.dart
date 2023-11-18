@@ -7,7 +7,8 @@ class Task extends HiveObject {
   @HiveField(0)
   String name = '';
   @HiveField(1)
-  bool isCompeleted = false;
+  bool isCompeleted = false
+  ;
   @HiveField(2)
   Periority periority = Periority.low;
 
