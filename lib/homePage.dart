@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'member_item.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:todo/main.dart';
+
+import 'bottom-sheet2.dart';
+import 'data.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,333 +15,220 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-MembersName membersItem =MembersName.Imani;
-
-void updateselectedItems(MembersName membersName){
-  setState(() {
-    membersItem=membersName;
-
-
-  });
-}
-
-
-
+  MembersName membersItem = MembersName.Imani;
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController controller = TextEditingController();
+    final box = Hive.box<Task>(TaskBoxName);
+
     // TODO: implement build
     return SafeArea(
         child: Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            showModalBottomSheet(
-
-              isScrollControlled: true
-                ,
-                context: context,
-                builder: (context) {
-
-                  return Padding(
-                    padding:  EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                    child: Stack(
-                      children: [
-                        SizedBox(
-                          height: 290,
-                          child: Column(
-                            children: [
-                               Padding(
-                                  padding: const EdgeInsets.only(
-                                      right: 4, left: 4, top: 20, bottom: 1),
-                                  child: SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Wrap(
-                                      direction: Axis.horizontal,
-                                      children: [
-                                        MembersItem(
-                                          title: 'Ali Imani',
-                                          imagePath: 'assets/img/1.png',
-                                          selected:membersItem==MembersName.Imani,
-                                          name: MembersName.Imani,
-                                          onTapContainer: () {
-                                            updateselectedItems(MembersName.Imani);
-                                          },
-                                        ),
-                                        MembersItem(
-                                          title: 'Sara Radi',
-                                          imagePath: 'assets/img/3.png',
-                                          selected:membersItem==MembersName.Radi,
-                                          name: MembersName.Radi,
-                                          onTapContainer: () {updateselectedItems(MembersName.Radi);},
-                                        ),
-                                        MembersItem(
-                                          title: 'Reza Ahmadi',
-                                          imagePath: 'assets/img/2.png',
-                                          selected: membersItem==MembersName.Ahmadi,
-                                          name: MembersName.Ahmadi,
-                                          onTapContainer: () {updateselectedItems(MembersName.Ahmadi);},
-                                        ),
-                                        MembersItem(
-                                          title: 'Raha Hasani',
-                                          imagePath: 'assets/img/4.png',
-                                          selected: membersItem==MembersName.Hasani,
-                                          name: MembersName.Hasani,
-                                          onTapContainer: () {updateselectedItems(MembersName.Hasani);},
-                                        ),
-                                        MembersItem(
-                                          title: 'Mona Rezaei',
-                                          imagePath: 'assets/img/5.png',
-                                          selected: membersItem==MembersName.Rezaei,
-                                          name: MembersName.Rezaei,
-                                          onTapContainer: () {updateselectedItems(MembersName.Rezaei);},
-                                        ),
-                                        MembersItem(
-                                          title: 'Kian Davoodi',
-                                          imagePath: 'assets/img/6.png',
-                                          selected: membersItem==MembersName.Davoodi,
-                                          name: MembersName.Davoodi,
-                                          onTapContainer: () {updateselectedItems(MembersName.Davoodi);},
-                                        ),
-                                        MembersItem(
-                                          title: 'Negin Razi',
-                                          imagePath: 'assets/img/7.png',
-                                          selected: membersItem==MembersName.Razi,
-                                          name: MembersName.Razi,
-                                          onTapContainer: () {updateselectedItems(MembersName.Razi);},
-                                        ),
-                                        MembersItem(
-                                          title: 'Sahar Najjar',
-                                          imagePath: 'assets/img/8.png',
-                                          selected: membersItem==MembersName.Najafi,
-                                          name: MembersName.Najafi,
-                                          onTapContainer: () {updateselectedItems(MembersName.Najafi);},
-                                        ),
-                                      ],
-                                    ),
-                                  )),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 40, top: 40, right: 40, bottom: 40),
-                                child: Expanded(
-                                  child: TextField(
-                                    controller: controller,
-                                    decoration: InputDecoration(
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                        prefixIcon: const Icon(
-                                          CupertinoIcons
-                                              .pencil_ellipsis_rectangle,
-                                          size: 18,
-                                        ),
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            borderSide: const BorderSide(
-
-                                            )),
-                                        label: const Text(
-                                          'Add a new task...',
-                                          style: TextStyle(fontSize: 12),
-                                        )),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 12,
-                          right: 157,
-                          child: Container(
-                            width: 85,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  gradient: LinearGradient(colors: [
-                                    Colors.blue.shade400,
-                                    Colors.blue.shade300,
-                                    Colors.lightBlueAccent.shade100
-                                  ])),
-                              child: MaterialButton(
-                                  textColor: Colors.black,
-                                  elevation: 0,
-                                  child: const Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Save',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                      SizedBox(
-                                        width: 1,
-                                      ),
-                                      Icon(
-                                        CupertinoIcons.check_mark,
-                                        size: 18,
-                                        color: Colors.white,
-                                      ),
-                                    ],
-                                  ),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  }),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  );
-                });
-
-          },
-          label: const Row(
-            children: [
-              Text(
-                'Add New Task',
-                style: TextStyle(color: Colors.white),
-              ),
-              SizedBox(
-                width: 5,
-              ),
-              Icon(
-                CupertinoIcons.add,
-                color: Colors.white,
-              )
-            ],
-          )),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(32, 1, 32, 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'To Do List',
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-                Image.asset('assets/img/letter.png')
-              ],
-            ),
-          ),
-          Container(
-            height: 40,
-            width: 360,
-            decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-                  Colors.blue.shade300,
-                  Colors.blue.shade200,
-                  Colors.blue.shade100
-                ]),
-                color: Colors.grey.shade300,
-                borderRadius: BorderRadius.circular(10)),
-            child: const TextField(
-              decoration: InputDecoration(
-                  prefixIcon: Icon(
-                    CupertinoIcons.search,
-                    color: Colors.white,
+          floatingActionButtonLocation: FloatingActionButtonLocation
+              .centerFloat,
+          floatingActionButton: FloatingActionButton.extended(
+              onPressed: () {
+                showModalBottomSheet(
+                    isScrollControlled: true,
+                    context: context,
+                    builder: (context) {
+                      return StatefulBuilder(
+                        builder: (BuildContext context,
+                            void Function(void Function()) setState) {
+                          return BottomSheet2();
+                        },
+                      );
+                    });
+              },
+              label: const Row(
+                children: [
+                  Text(
+                    'Add New Task',
+                    style: TextStyle(color: Colors.white),
                   ),
-                  border: InputBorder.none,
-                  label: Padding(
-                    padding: EdgeInsets.only(left: 8),
-                    child: Text(
-                      'Search Task ...',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  )),
-            ),
-          ),
-          Column(
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Icon(
+                    CupertinoIcons.add,
+                    color: Colors.white,
+                  )
+                ],
+              )),
+          body: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(32, 12, 32, 8),
+                padding: const EdgeInsets.fromLTRB(32, 1, 32, 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Row(
-                      children: [
-                        Text(
-                          'Ali Imani',
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          width: 4,
-                        ),
-                        Icon(
-                          CupertinoIcons.arrow_down,
-                          color: Colors.blue,
-                          size: 18,
-                        )
-                      ],
+                    const Text(
+                      'To Do List',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
                     ),
-                    Container(
-                      width: 80,
-                      height: 35,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            gradient: LinearGradient(colors: [
-                              Colors.blue.shade400,
-                              Colors.blue.shade300,
-                              Colors.lightBlueAccent.shade100
-                            ])),
-                        child: MaterialButton(
-                            textColor: Colors.black,
-                            elevation: 0,
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Delete',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 12),
-                                ),
-                                SizedBox(
-                                  width: 1,
-                                ),
-                                Icon(
-                                  CupertinoIcons.delete_solid,
-                                  size: 12,
-                                  color: Colors.white,
-                                ),
-                              ],
-                            ),
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            }),
-                      ),
-                    ),
+                    Image.asset('assets/img/letter.png')
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15),
-                child: Container(
-                  height: 60,
-                  width: 350,
-                  decoration: BoxDecoration(
-                      color: Colors.grey.shade100,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Text(controller.text),
+              Container(
+                height: 40,
+                width: 360,
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                      Colors.blue.shade300,
+                      Colors.blue.shade200,
+                      Colors.blue.shade100
+                    ]),
+                    color: Colors.grey.shade300,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const TextField(
+                  decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        CupertinoIcons.search,
+                        color: Colors.white,
+                      ),
+                      border: InputBorder.none,
+                      label: Padding(
+                        padding: EdgeInsets.only(left: 8),
+                        child: Text(
+                          'Search Task ...',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      )),
                 ),
-              )
+              ),
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(32, 12, 32, 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Row(
+                          children: [
+                            Text(
+                              'Members Task',
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              width: 4,
+                            ),
+                            Icon(
+                              CupertinoIcons.arrow_down,
+                              color: Colors.blue,
+                              size: 18,
+                            )
+                          ],
+                        ),
+                        Container(
+                          width: 80,
+                          height: 35,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                gradient: LinearGradient(colors: [
+                                  Colors.blue.shade400,
+                                  Colors.blue.shade300,
+                                  Colors.lightBlueAccent.shade100
+                                ])),
+                            child: MaterialButton(
+                                textColor: Colors.black,
+                                elevation: 0,
+                                child: const Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Delete',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 12),
+                                    ),
+                                    SizedBox(
+                                      width: 1,
+                                    ),
+                                    Icon(
+                                      CupertinoIcons.delete_solid,
+                                      size: 12,
+                                      color: Colors.white,
+                                    ),
+                                  ],
+                                ),
+                                onPressed: () {
+                                  box.clear();
+                                }),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Expanded(
+                  child: ValueListenableBuilder(
+                    valueListenable: box.listenable(),
+                    builder: (BuildContext context, value, Widget? child) {
+                      if(box.isNotEmpty){ return ListView.builder(
+                          itemCount:value.values.length,
+                          itemBuilder: (context, index) {
+                            final Task task = value.values.toList()[index];
+                            return Padding(
+                              padding: const EdgeInsets.only(left: 12,right: 12),
+                              child: Container(
+                                width: 270,
+                                height: 60,
+                                margin: const EdgeInsets.all(8.0),
+                                decoration: BoxDecoration(
+                                    boxShadow: const [BoxShadow(color: Colors.grey,blurRadius: 0.05)],
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.grey.shade100),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 25,),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(task.name),
+                                      IconButton(onPressed: (){
+                                 task.delete();
 
+
+                                      }, icon: const Icon(Icons.clear,size: 16,color: Colors.blue,))
+                                    ],
+                                  ),
+
+                                ),
+                              ),
+                            );
+                          });}else{return EmpteState();}
+
+
+                    },
+                  ))
             ],
-          )
-        ],
-      ),
-    ));
+          ),
+        ));
+  }
+}
+class EmpteState extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Center(child: Padding(
+      padding: const EdgeInsets.only(top: 190),
+      child: Column(children: [
+      Image.asset('assets/img/uiii.jpg',width: 120,height: 120,),
+        const SizedBox(height: 10,),
+        const Text('Your task is empty',style: TextStyle(
+            color: Colors.grey,
+            fontSize: 18,fontWeight: FontWeight.bold),)
+
+
+      ],),
+    ),);
   }
 }
 

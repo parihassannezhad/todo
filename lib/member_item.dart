@@ -22,6 +22,8 @@ class MembersItem extends StatelessWidget {
     return Column(
       children: [
         InkWell(
+
+          customBorder: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
           onTap: onTapContainer,
           child: Container(
             width: 64,
