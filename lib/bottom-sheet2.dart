@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:todo/main.dart';
 
-
 import 'data.dart';
-import 'homePage.dart';
 import 'member_item.dart';
 
 class BottomSheet2 extends StatefulWidget {
@@ -14,11 +12,13 @@ class BottomSheet2 extends StatefulWidget {
 }
 
 class _BottomSheet2State extends State<BottomSheet2> {
-  MembersName membersItem = MembersName.Imani;
 
-  void updateselectedItems(MembersName membersName) {
+  var index = 0;
+
+  void updateselectedItems(int value) {
     setState(() {
-      membersItem = membersName;
+      //selectedUser = user;
+      index = value;
     });
   }
 
@@ -30,7 +30,7 @@ class _BottomSheet2State extends State<BottomSheet2> {
 
     return Padding(
       padding:
-      EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Stack(
         children: [
           SizedBox(
@@ -46,75 +46,83 @@ class _BottomSheet2State extends State<BottomSheet2> {
                         direction: Axis.horizontal,
                         children: [
                           MembersItem(
-                            title: 'Ali Imani',
-                            imagePath: 'assets/img/1.png',
-                            selected: membersItem == MembersName.Imani,
-                            name: MembersName.Imani,
+                            user: User(
+                              'Ali Imani',
+                              'assets/img/1.png',
+                            ),
+                            selected: index == 0,
                             onTapContainer: () {
-                              updateselectedItems(MembersName.Imani);
+                              updateselectedItems(0);
                             },
                           ),
                           MembersItem(
-                            title: 'Sara Radi',
-                            imagePath: 'assets/img/3.png',
-                            selected: membersItem == MembersName.Radi,
-                            name: MembersName.Radi,
+                            user: User(
+                              'Sara Radi',
+                              'assets/img/3.png',
+                            ),
+                            selected: index == 1,
                             onTapContainer: () {
-                              updateselectedItems(MembersName.Radi);
+                              updateselectedItems(1);
                             },
                           ),
                           MembersItem(
-                            title: 'Reza Ahmadi',
-                            imagePath: 'assets/img/2.png',
-                            selected: membersItem == MembersName.Ahmadi,
-                            name: MembersName.Ahmadi,
+                            user: User(
+                              'Reza Ahmadi',
+                              'assets/img/2.png',
+                            ),
+                            selected: index == 2,
                             onTapContainer: () {
-                              updateselectedItems(MembersName.Ahmadi);
+                              updateselectedItems(2);
                             },
                           ),
                           MembersItem(
-                            title: 'Raha Hasani',
-                            imagePath: 'assets/img/4.png',
-                            selected: membersItem == MembersName.Hasani,
-                            name: MembersName.Hasani,
+                            user: User(
+                              'Raha Hasani',
+                              'assets/img/4.png',
+                            ),
+                            selected: index == 3,
                             onTapContainer: () {
-                              updateselectedItems(MembersName.Hasani);
+                              updateselectedItems(3);
                             },
                           ),
                           MembersItem(
-                            title: 'Mona Rezaei',
-                            imagePath: 'assets/img/5.png',
-                            selected: membersItem == MembersName.Rezaei,
-                            name: MembersName.Rezaei,
+                            user: User(
+                              'Mona Rezaei',
+                              'assets/img/5.png',
+                            ),
+                            selected: index == 4,
                             onTapContainer: () {
-                              updateselectedItems(MembersName.Rezaei);
+                              updateselectedItems(4);
                             },
                           ),
                           MembersItem(
-                            title: 'Kian Davoodi',
-                            imagePath: 'assets/img/6.png',
-                            selected: membersItem == MembersName.Davoodi,
-                            name: MembersName.Davoodi,
+                            user: User(
+                              'Kian Davoodi',
+                              'assets/img/6.png',
+                            ),
+                            selected: index == 5,
                             onTapContainer: () {
-                              updateselectedItems(MembersName.Davoodi);
+                              updateselectedItems(5);
                             },
                           ),
                           MembersItem(
-                            title: 'Negin Razi',
-                            imagePath: 'assets/img/7.png',
-                            selected: membersItem == MembersName.Razi,
-                            name: MembersName.Razi,
+                            user: User(
+                              'Negin Razi',
+                              'assets/img/7.png',
+                            ),
+                            selected: index == 6,
                             onTapContainer: () {
-                              updateselectedItems(MembersName.Razi);
+                              updateselectedItems(6);
                             },
                           ),
                           MembersItem(
-                            title: 'Sahar Najjar',
-                            imagePath: 'assets/img/8.png',
-                            selected: membersItem == MembersName.Najafi,
-                            name: MembersName.Najafi,
+                            user: User(
+                              'Sahar Najjar',
+                              'assets/img/8.png',
+                            ),
+                            selected: index == 7,
                             onTapContainer: () {
-                              updateselectedItems(MembersName.Najafi);
+                              updateselectedItems(7);
                             },
                           ),
                         ],
@@ -153,7 +161,7 @@ class _BottomSheet2State extends State<BottomSheet2> {
               width: 85,
               height: 40,
               decoration:
-              BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                  BoxDecoration(borderRadius: BorderRadius.circular(20)),
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -186,12 +194,13 @@ class _BottomSheet2State extends State<BottomSheet2> {
                       final task = Task();
                       task.name = controller.text;
                       task.periority = Periority.low;
+                      task.user=userList[index];
+
                       if (task.isInBox) {
                         task.save();
-                      }else{
-                        final Box<Task> box=Hive.box(TaskBoxName);
+                      } else {
+                        final Box<Task> box = Hive.box(TaskBoxName);
                         box.add(task);
-
                       }
 
                       Navigator.of(context).pop();

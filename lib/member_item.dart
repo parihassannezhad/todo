@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:todo/data.dart';
 import 'package:todo/homePage.dart';
 
 class MembersItem extends StatelessWidget {
-  final MembersName name;
-  final String title;
-  final String imagePath;
+
   final bool selected;
   final Function() onTapContainer;
+  final User user;
 
   const MembersItem({
     super.key,
-    required this.imagePath,
     required this.selected,
-    required this.title,
-    required this.name,
     required this.onTapContainer,
+    required this.user
   });
 
   @override
@@ -22,8 +20,8 @@ class MembersItem extends StatelessWidget {
     return Column(
       children: [
         InkWell(
-
-          customBorder: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+          customBorder:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
           onTap: onTapContainer,
           child: Container(
             width: 64,
@@ -51,7 +49,7 @@ class MembersItem extends StatelessWidget {
               ),
               padding: const EdgeInsets.all(5),
               child: Image.asset(
-                imagePath,
+                user.imagePath,
               ),
             ),
           ),
@@ -59,13 +57,10 @@ class MembersItem extends StatelessWidget {
         Padding(
             padding: const EdgeInsets.only(top: 4),
             child: Text(
-              title,
+              user.title,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
             ))
       ],
     );
   }
 }
-
-
-

@@ -6,7 +6,7 @@ import 'package:todo/main.dart';
 import 'Task_Item.dart';
 import 'bottom-sheet2.dart';
 import 'data.dart';
-import 'empty_state.dart';
+import 'empty_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  MembersName membersItem = MembersName.Imani;
+
 
   @override
   Widget build(BuildContext context) {
@@ -106,18 +106,19 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.fromLTRB(32, 12, 32, 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children:  [
-                     Row(
+                  children: [
+                    Row(
                       children: [
                         Column(
                           children: [
                             const Text(
-
                               'Members Task',
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.bold),
                             ),
-                            const SizedBox(height: 8,),
+                            const SizedBox(
+                              height: 8,
+                            ),
                             Container(
                               width: 110,
                               height: 1,
@@ -125,10 +126,9 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 4,
                         ),
-
                       ],
                     ),
                     Container(
@@ -201,18 +201,3 @@ class _HomePageState extends State<HomePage> {
 }
 
 
-
-
-
-
-
-enum MembersName {
-  Imani,
-  Radi,
-  Ahmadi,
-  Hasani,
-  Rezaei,
-  Davoodi,
-  Razi,
-  Najafi,
-}

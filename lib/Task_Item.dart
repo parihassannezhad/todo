@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'check_box.dart';
 import 'data.dart';
-import 'homePage.dart';
 
 class TaskItem extends StatefulWidget {
   const TaskItem({
@@ -21,9 +19,13 @@ class _TaskItemState extends State<TaskItem> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         setState(() {
-          widget.task.isCompeleted=!widget.task.isCompeleted;
+          if (widget.task.isCompeleted == null) {
+            widget.task.isCompeleted = false;
+          } else {
+            widget.task.isCompeleted = !widget.task.isCompeleted!;
+          }
         });
       },
       child: Container(
@@ -32,9 +34,7 @@ class _TaskItemState extends State<TaskItem> {
         margin: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
             boxShadow: [
-              BoxShadow(
-                  color: Colors.grey.withOpacity(0.7),
-                  blurRadius: 10)
+              BoxShadow(color: Colors.grey.withOpacity(0.7), blurRadius: 10)
             ],
             borderRadius: BorderRadius.circular(10),
             color: Colors.grey.shade100),
@@ -45,12 +45,16 @@ class _TaskItemState extends State<TaskItem> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row
-                (children: [MyChechBox(value:widget.task.isCompeleted),
-                const SizedBox(width: 8,),
-                Text(widget.task.name),],),
-
-
+              Row(
+                children: [
+                  MyChechBox(value: widget.task.isCompeleted!),
+                  Image.asset(widget.task.user!.imagePath!,width: 24,height: 24,),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Text(widget.task.name!),
+                ],
+              ),
               IconButton(
                   onPressed: () {
                     widget.task.delete();
