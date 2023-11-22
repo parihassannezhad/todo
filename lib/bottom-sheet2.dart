@@ -30,7 +30,7 @@ class _BottomSheet2State extends State<BottomSheet2> {
 
     return Padding(
       padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Stack(
         children: [
           SizedBox(
@@ -161,7 +161,7 @@ class _BottomSheet2State extends State<BottomSheet2> {
               width: 85,
               height: 40,
               decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(20)),
+              BoxDecoration(borderRadius: BorderRadius.circular(20)),
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),

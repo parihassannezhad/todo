@@ -43,51 +43,45 @@ class User extends HiveObject{
 }
 
 var userList= [
-    User(
-      'Ali Imani',
-      'assets/img/1.png',
-      
-
-    ),
-    User(
-      'Sara Radi',
-      'assets/img/3.png',
-   
-    ),
-    User(
-      'Reza Ahmadi',
-      'assets/img/2.png',
-   
-    ),
-    User(
-      'Raha Hasani',
-      'assets/img/4.png',
-     
-    ),
-    User(
-      'Mona Rezaei',
-      'assets/img/5.png',
-    
-    ),
-    User(
-      'Kian Davoodi',
-      'assets/img/6.png',
-    
-    ),
-    User(
-      'Negin Razi',
-      'assets/img/7.png',
-   
-    ),
-    User(
-      'Sahar Najjar',
-      'assets/img/8.png',
-    
-    ),
-  ];
+  User(
+    'Ali Imani',
+    'assets/img/1.png',
 
 
+  ),
+  User(
+    'Sara Radi',
+    'assets/img/3.png',
 
+  ),
+  User(
+    'Reza Ahmadi',
+    'assets/img/2.png',
 
+  ),
+  User(
+    'Raha Hasani',
+    'assets/img/4.png',
 
+  ),
+  User(
+    'Mona Rezaei',
+    'assets/img/5.png',
 
+  ),
+  User(
+    'Kian Davoodi',
+    'assets/img/6.png',
+
+  ),
+  User(
+    'Negin Razi',
+    'assets/img/7.png',
+
+  ),
+  User(
+    'Sahar Najjar',
+    'assets/img/8.png',
+
+  ),
+];

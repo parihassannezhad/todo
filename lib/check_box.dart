@@ -19,10 +19,10 @@ class MyChechBox extends StatelessWidget {
       ),
       child: value
           ? const Icon(
-              Icons.check,
-              size: 12,
-              color: Colors.white,
-            )
+        Icons.check,
+        size: 12,
+        color: Colors.white,
+      )
           : null,
     );
   }

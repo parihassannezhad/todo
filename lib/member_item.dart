@@ -21,7 +21,7 @@ class MembersItem extends StatelessWidget {
       children: [
         InkWell(
           customBorder:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
           onTap: onTapContainer,
           child: Container(
             width: 64,
@@ -31,15 +31,15 @@ class MembersItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(33),
               gradient: selected
                   ? const LinearGradient(begin: Alignment.topLeft, colors: [
-                      Color(0xff376AED),
-                      Color(0xff49B0E2),
-                      Color(0xff9CECFB),
-                    ])
+                Color(0xff376AED),
+                Color(0xff49B0E2),
+                Color(0xff9CECFB),
+              ])
                   : LinearGradient(begin: Alignment.topLeft, colors: [
-                      Colors.grey,
-                      Colors.grey.shade400,
-                      Colors.grey.shade200,
-                    ]),
+                Colors.grey,
+                Colors.grey.shade400,
+                Colors.grey.shade200,
+              ]),
             ),
             child: Container(
               margin: const EdgeInsets.all(3),
